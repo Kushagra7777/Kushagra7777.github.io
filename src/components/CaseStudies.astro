@@ -1,0 +1,70 @@
+---
+import { work } from "../data/work";
+import Icon from "./Icon.astro";
+---
+
+<section class="section work-section" id="work">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow">05 / THE ENGINEERING NOTEBOOK</p>
+      <div class="heading-row">
+        <h2>
+          Less hand-waving.
+          <br />
+          <span class="muted">More execution paths.</span>
+        </h2>
+        <p>
+          Illustrative investigation outlines, ready for real evidence. No
+          invented client wins. No mystery speedups.
+        </p>
+      </div>
+    </div>
+    <div class="work-grid">
+      {work.map((w) => (
+        <article class="work-card reveal">
+          <div class="work-diagram" aria-hidden="true">
+            <span class="mono">TRACE / {w.number}</span>
+            <div
+              class:list={[
+                "diagram-path",
+                { "violet-path": w.number === "02" },
+              ]}
+            >
+              <i>INPUT</i>
+              <b>→</b>
+              <i>{w.number === "01" ? "CACHE" : "RUNTIME"}</i>
+              <b>→</b>
+              <i>GPU</i>
+            </div>
+            <span class="mono">
+              {w.number === "01"
+                ? "COMPILE → CACHE → EXECUTE"
+                : "QUEUE → SCHEDULE → EXECUTE"}
+            </span>
+          </div>
+          <div class="work-body">
+            <span class="pill">INVESTIGATION OUTLINE</span>
+            <h3>{w.title}</h3>
+            <p class="work-subtitle">{w.short}</p>
+            <dl>
+              <dt>Problem</dt>
+              <dd>{w.problem}</dd>
+              <dt>Focus</dt>
+              <dd>{w.focus}</dd>
+              <dt>Validation plan</dt>
+              <dd>{w.validation}</dd>
+            </dl>
+            <div class="tags">
+              {w.tags.map((t) => (
+                <span>{t}</span>
+              ))}
+            </div>
+            <a href={`/work/${w.slug}/`} class="text-link">
+              Read engineering notes <Icon name="external" size={18} />
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

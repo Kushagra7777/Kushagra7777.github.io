@@ -1,0 +1,29 @@
+---
+import Icon from "./Icon.astro";
+const links = ["Services", "Problems", "Work", "Process", "About", "Contact"];
+---
+
+<header class="site-header" id="top">
+  <div class="nav-shell container">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">
+        k<span>.</span>
+      </span>
+      <span>
+        Kushagra <strong>Srivastav</strong>
+        <small>GPU / SYSTEMS ENGINEER</small>
+      </span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">
+      Menu <span aria-hidden="true">+</span>
+    </button>
+    <nav id="main-nav" aria-label="Main navigation">
+      {links.map((link) => (
+        <a href={`/#${link.toLowerCase()}`}>{link}</a>
+      ))}
+      <a class="button button-small" href="/#audit">
+        Request Audit <Icon name="external" size={15} />
+      </a>
+    </nav>
+  </div>
+</header>
